@@ -16,13 +16,15 @@ var _target = null
 
 var _dest = Vector2.ZERO
 var _velocity = Vector2.ZERO
+var _can_attack = false
 
 func _ready():
-	pass
+	_can_attack = true
 
 func _process(delta):
 	state_machine()
-
+	if _target:
+		attack()
 func state_machine():
 	match _state:
 		HeroState.IDLE:
@@ -47,7 +49,21 @@ func state_machine():
 		HeroState.CHASE_ENEMY:
 			pass
 
+func attack() -> void:
+	if _can_attack:
+		print("attack!")
+		_can_attack = false
+		$AttackTimer.start()
+		var a = attackScn.instance() as Fireball
+		add_child(a)
+		a.start(position,(_target.position - position).normalized())
 
 func _on_WanderTimer_timeout():
 	if _state == HeroState.WANDER:
 		_state = HeroState.IDLE
+
+func _on_EnemyDetect_body_entered(body):
+	_target = body
+
+func _on_AttackTimer_timeout():
+	_can_attack = true

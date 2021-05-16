@@ -8,7 +8,6 @@ export(int) var speed = 400
 
 var velocity = Vector2.ZERO
 
-
 var can_shoot = true
 
 func _ready():
@@ -17,9 +16,8 @@ func _ready():
 func _input(event):
 	handleMovement()
 	look_at(get_global_mouse_position())	
-	if event is InputEventMouseButton and can_shoot:
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and can_shoot:
 		takePicture()
-		
 
 
 func takePicture() -> void:
