@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemies/Lvl1Enemy.tscn" type="PackedScene" id=2]
+
+[node name="Main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 428.856, 213.587 )
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Lvl1Enemy" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 904, 272 )
+
+[node name="Lvl1Enemy2" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 840, 400 )
+rotation = -0.571777
+
+[node name="Lvl1Enemy3" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 1056, 336 )
+rotation = 1.16613
+scale = Vector2( 1, 1 )
+
+[node name="Lvl1Enemy4" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 144, 544 )
+
+[node name="Lvl1Enemy5" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 80.0001, 672 )
+rotation = -0.571777
