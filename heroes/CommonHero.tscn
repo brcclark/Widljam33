@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://heroes/Hero.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scripts/CommonHero.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="Hero" instance=ExtResource( 1 )]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" parent="." index="0"]
+self_modulate = Color( 0, 0, 1, 1 )
+rotation = 1.57079
+scale = Vector2( 1.4, 1.4 )
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+scale = Vector2( 4.65988, 4.64 )
+shape = SubResource( 2 )
+
+[node name="EnemyDetect" type="Area2D" parent="." index="2"]
+rotation = 1.57079
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyDetect" index="0"]
+polygon = PoolVector2Array( 0, 0, 256, 0, 256, -128, 192, -256, 64, -296, -64, -296, -192, -256, -256, -128, -256, 0 )
+
+[node name="WanderTimer" type="Timer" parent="." index="3"]
+
+[connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
