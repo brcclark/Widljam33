@@ -29,12 +29,16 @@ rotation = 1.57079
 scale = Vector2( 1.4, 1.4 )
 frames = SubResource( 1 )
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="StateMachine" type="Node" parent="." index="1"]
+
+[node name="Idle" type="Node" parent="StateMachine" index="0"]
+
+[node name="CollisionShape2D" parent="." index="2"]
 visible = false
 scale = Vector2( 4.65988, 4.64 )
 shape = SubResource( 2 )
 
-[node name="EnemyDetect" type="Area2D" parent="." index="2"]
+[node name="EnemyDetect" type="Area2D" parent="." index="3"]
 rotation = 1.57079
 collision_layer = 0
 collision_mask = 3
@@ -42,9 +46,9 @@ collision_mask = 3
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyDetect" index="0"]
 polygon = PoolVector2Array( 0, 0, 256, 0, 256, -128, 192, -256, 64, -296, -64, -296, -192, -256, -256, -128, -256, 0 )
 
-[node name="WanderTimer" type="Timer" parent="." index="3"]
+[node name="WanderTimer" type="Timer" parent="." index="4"]
 
-[node name="AttackTimer" type="Timer" parent="." index="4"]
+[node name="AttackTimer" type="Timer" parent="." index="5"]
 wait_time = 0.5
 
 [connection signal="body_entered" from="EnemyDetect" to="." method="_on_EnemyDetect_body_entered"]
